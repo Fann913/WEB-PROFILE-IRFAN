@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header dengan Slider</title>
+    <style>
+        /* Gaya untuk Header dan Slider */
+        .header {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Tombol navigasi */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header dengan Slider -->
+    <div class="header">
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <div class="slider">
+            <div class="slide">
+                <img src="wallpaper fubuki web.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="beserk.jpg" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="gambar visual studio.png" alt="Slide 3">
+            </div>
+        </div>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            // Update indeks slide saat ini
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+            // Geser slider ke posisi yang sesuai
+            document.querySelector('.slider').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    </script>
+</body>
+</html>
